@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1095016803610",
+    "project_id": "nat-cv",
+    "storage_bucket": "nat-cv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095016803610:android:64739882257bcc7584d0a3",
+        "android_client_info": {
+          "package_name": "com.houseinnovationgroup.natcv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095016803610-tlul038jpoi7qfel5pnk09pl4jpu59a9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAsE5ZBjfHTrIHidJbnQrY-n-w9dmcGZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095016803610-tlul038jpoi7qfel5pnk09pl4jpu59a9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
