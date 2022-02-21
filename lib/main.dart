@@ -6,9 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nat_cv/screens/accueil/accueil2.dart';
+import 'package:nat_cv/screens/accueil/accueil_screen.dart';
+import 'package:nat_cv/screens/detail_alerte/detail_alerte_page.dart';
 import 'package:nat_cv/screens/home/home_page.dart';
 import 'package:nat_cv/screens/login/login_screen.dart';
+import 'package:nat_cv/style.dart';
 import 'package:nat_cv/utils/pref_manager.dart';
+import 'package:nat_cv/widgets/neo_app_style.dart';
 import 'package:nat_cv/wrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -56,7 +63,7 @@ void main() async{
 
   runApp(EasyLocalization(
     child: MyApp(),
-    supportedLocales: [
+    supportedLocales: const [
       Locale('en', 'US'),
       //Locale('de', 'DE'),
       //Locale('ar', 'DZ'),
@@ -115,35 +122,53 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _buildWithTheme(BuildContext context) {
-    return MaterialApp(
-      // builder: (context, child) {
-      //   _loadScreen(context);
-      //   // return ScrollConfiguration(
-      //   //   behavior: MyBehavior(),
-      //   //   child: child,
-      //   // );
-      // },
-      title: 'Natrhemploi-camer',
-      // initialRoute: Wrapper(),
-      // onGenerateRoute: RouteGenerator.generateRoute,
-      // localizationsDelegates: [
-      //   // GlobalMaterialLocalizations.delegate,
-      //   // GlobalWidgetsLocalizations.delegate,
-      //   // GlobalCupertinoLocalizations.delegate,
-      //   // context.lo,
-      //   DefaultCupertinoLocalizations.delegate,
-      //   EasyLocalization.of(context).delegate,
-      // ],
-      // supportedLocales: EasyLocalization.of(context).supportedLocales,
-      // locale: EasyLocalization.of(context).locale,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      // theme: state.themeData,
-      // home: Wrapper(),
-      home: const LoginScreen(),
-    );
+    return NeumorphicAppStyle(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        debugShowCheckedModeBanner: false,
+        locale: context.locale,
+        title: 'title'.tr(),
+        initialRoute: '/',
+        onGenerateRoute: geneateRoute,
+        themeMode: ThemeMode.light,
+        theme: const NeumorphicThemeData(
+            defaultTextColor: Style.textColor,
+            baseColor: Style.bgColor,
+            accentColor: Style.primaryColor,
+            variantColor: Style.primaryColor,
+            intensity: 0.6,
+            lightSource: LightSource.topRight,
+            depth: 3,
+            appBarTheme: NeumorphicAppBarThemeData(
+                buttonPadding: EdgeInsets.all(14.0),
+                buttonStyle: NeumorphicStyle(
+                    boxShape: NeumorphicBoxShape.circle()),
+                iconTheme: IconThemeData(
+                  color: Style.textColor,
+                ),
+                icons: NeumorphicAppBarIcons(
+                    backIcon: Icon(FontAwesomeIcons.chevronLeft),
+                    menuIcon: Icon(FontAwesomeIcons.bars)))),
+        darkTheme: const NeumorphicThemeData(
+            defaultTextColor: Style.textColorDark,
+            baseColor: Style.bgColorDark,
+            accentColor: Style.primaryColor,
+            variantColor: Style.primaryColor,
+            intensity: 0.6,
+            lightSource: LightSource.topRight,
+            shadowDarkColor: Colors.black,
+            shadowLightColor: Colors.grey,
+            depth: 3,
+            appBarTheme: NeumorphicAppBarThemeData(
+                buttonPadding: EdgeInsets.all(14.0),
+                buttonStyle: NeumorphicStyle(
+                    boxShape: NeumorphicBoxShape.circle()),
+                iconTheme: IconThemeData(
+                  color: Style.textColorDark,
+                ),
+                icons: NeumorphicAppBarIcons(
+                    backIcon: Icon(FontAwesomeIcons.chevronLeft),
+                    menuIcon: Icon(FontAwesomeIcons.bars)))));
   }
 
   _loadScreen(context) async {
@@ -202,5 +227,30 @@ class MyHttpOverrides extends HttpOverrides{
   HttpClient createHttpClient(SecurityContext? context){
     return super.createHttpClient(context)
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
+Route geneateRoute(RouteSettings settings) {
+  //check named route and return page
+  switch (settings.name) {
+    case '/':
+      return MaterialPageRoute<Widget>(builder: (context) =>  HomePage());
+    // case '/item/edit':
+    //   return Container();
+    // case '/category':
+    // //return router with card animation
+    //   return CardRoute(
+    //       widget: TodoPage(settings.arguments as MainPageArguments),
+    //       arguments: settings.arguments as MainPageArguments);
+    // case '/category/add':
+    //   return CardRoute(
+    //       widget: AddCategory(settings.arguments as MainPageArguments),
+    //       arguments: settings.arguments as MainPageArguments);
+    // case '/category/edit':
+    //   return MaterialPageRoute<Widget>(
+    //       builder: (context) =>
+    //           AddCategory(settings.arguments as MainPageArguments));
+    default:
+      return MaterialPageRoute<Widget>(builder: (context) => const AccueilPage());
   }
 }

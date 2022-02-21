@@ -5,6 +5,7 @@ import 'package:nat_cv/screens/notification/view/notification_screen.dart';
 import 'package:nat_cv/screens/settings/tab_interface.dart';
 import 'package:nat_cv/screens/settings/widget/text_input_widget.dart';
 import 'package:nat_cv/utils/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'widget/button_widget.dart';
 
@@ -78,7 +79,7 @@ class _ParametreTabState extends State<ParametreTab> with AutomaticKeepAliveClie
                         Icons.clear,
                         color: kBlueColorLight,
                       ),
-                      title: Text('changer_de_langue'),
+                      title: Text('changer_de_langue'.tr()),
                       trailing: Icon(Icons.keyboard_arrow_right),
                       // onTap: () => navigateChangeLanguagePage(),
                     ),
@@ -88,7 +89,7 @@ class _ParametreTabState extends State<ParametreTab> with AutomaticKeepAliveClie
                         Icons.lock,
                         color: kBlueColorLight,
                       ),
-                      title: Text('modifier_mot_de_passe'),
+                      title: Text('modifier_mot_de_passe'.tr()),
                       trailing: Icon(Icons.keyboard_arrow_right),
                       onTap: () {
                         //open change location
@@ -100,7 +101,7 @@ class _ParametreTabState extends State<ParametreTab> with AutomaticKeepAliveClie
                         Icons.logout,
                         color: kBlueColorLight,
                       ),
-                      title: Text('se_deconnecter'),
+                      title: Text('se_deconnecter'.tr()),
                       trailing: Icon(Icons.keyboard_arrow_right),
                       onTap: () async{
                         //open change location
@@ -124,7 +125,7 @@ class _ParametreTabState extends State<ParametreTab> with AutomaticKeepAliveClie
                         // set up the AlertDialog
                         AlertDialog alert = AlertDialog(
                           title: Text('attention'),
-                          content: Text('confirmation_deconnexion'),
+                          content: Text('confirmation_deconnexion'.tr()),
                           actions: [
                             cancelButton,
                             continueButton,

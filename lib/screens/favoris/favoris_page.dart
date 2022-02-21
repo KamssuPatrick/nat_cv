@@ -35,6 +35,7 @@ class _FavorisPageState extends State<FavorisPage> {
         Container(
           height: ScreenUtil().setHeight(1280),
           width: double.infinity,
+          padding: EdgeInsets.only(bottom: 30),
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               physics: ScrollPhysics(),

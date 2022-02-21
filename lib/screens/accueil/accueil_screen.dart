@@ -1,7 +1,10 @@
 import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nat_cv/components/job_category_component.dart';
+import 'package:nat_cv/screens/detail_alerte/detail_alerte_page.dart';
 import 'package:nat_cv/utils/constants.dart';
 
 class AccueilPage extends StatefulWidget {
@@ -14,6 +17,11 @@ class AccueilPage extends StatefulWidget {
 class _AccueilPageState extends State<AccueilPage> {
 
   bool status = true;
+  int selectedIndex = 0;
+
+  List<dynamic> listIcons = [Icons.account_balance, Icons.design_services, Icons.electrical_services];
+
+  List<String> listTextIcon = ["Bank", "Design", "Electricien"];
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +30,58 @@ class _AccueilPageState extends State<AccueilPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: ScreenUtil().setHeight(20),
+          height: ScreenUtil().setHeight(10),
         ),
-        Text(
-          "Mes alertes",
-          style: TextStyle(
-              color: Color(0xFF4D70A6),
-              fontSize: 26,
-              fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Job Category",
+              style: TextStyle(
+                  color: Color(0xFF1F1C1C).withOpacity(0.8),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "see all",
+              style: TextStyle(
+                  color: Color(0xFF4D70A6),
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
+        SizedBox(
+          height: ScreenUtil().setHeight(5),
+        ),
+
+        Container(
+          height: ScreenUtil().setHeight(300),
+          width: double.infinity,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: listTextIcon.length,
+              itemBuilder: (context,index){
+
+
+
+                return  GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
+                  child: JobCategoryComponent(
+                    icons : listIcons[index],
+                    category: listTextIcon[index],
+                    selected : selectedIndex,
+                    index : index
+                  ),
+                );
+              }),
+        ),
+
         SizedBox(
           height: ScreenUtil().setHeight(20),
         ),
@@ -43,187 +94,197 @@ class _AccueilPageState extends State<AccueilPage> {
               shrinkWrap: true,
               itemCount: 12,
               itemBuilder: (context,index){
-                return  Row(
-                  children: [
-                    Container(
-                      width: 320,
-                      alignment: Alignment.center,
-                      height: ScreenUtil().setHeight(590),
-                      margin: EdgeInsets.symmetric(vertical: 15),
-                      decoration: BoxDecoration(
-                          color: Color(0xFFF1F3F6),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(10, 10),
-                                color: Color(0xFF4D70A6).withOpacity(0.2),
-                                blurRadius: 36),
-                            BoxShadow(
-                                offset: Offset(-10, -10),
-                                color: Color.fromARGB(170, 255, 255, 255),
-                                blurRadius: 10),
-                          ]),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 1, top: 1, bottom: 1),
-                        child: Column(
-                          children: [
-                            Flexible(
-                              flex: 6,
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    // color: Colors.redAccent,
-                                    child: Row(
-                                      children: [
-                                        Flexible(
-                                          flex: 2,
-                                          child: Container(
-                                            // color: Colors.yellow,
-                                            child:  InnerShadow(
-                                              color: Color(0xFF4D70A6).withOpacity(.2),
-                                              offset: Offset(5, 5),
-                                              blur: 2,
-                                              child: Container(
-                                                height: ScreenUtil().setHeight(200),
-                                                width: ScreenUtil().setHeight(230),
-                                                // margin: EdgeInsets.symmetric(vertical: 1),
-                                                decoration: BoxDecoration(
-                                                  // borderRadius: BorderRadius.circular(10),
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: AssetImage("assets/images/logos/NatLogo.jpg")
-                                                    )
-                                                  // color: Color(0xFFF1F3F6),
-                                                ),
-                                                // child: Image.asset("assets/images/logos/NatLogo.jpg"),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 7,
-                                          child: Container(
-                                            // color: Colors.green,
-                                            padding: EdgeInsets.only(left: 3, top: 5, bottom: 3),
-                                            child: Container(
-                                              padding: EdgeInsets.only(left: 5, top: 5),
-                                              child: Column(
-                                                children: [
-                                                  const Text(
-                                                    "Développeur Full Stack",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        color: kBlueColorLight),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-
-                                                  Row(
-                                                    children: const [
-                                                      Icon(
-                                                        Icons.location_on_outlined,
-                                                        color: kBlueColorLight,
-                                                        size: 25,
-                                                      ),
-                                                      Text(
-                                                        "Douala, Douala II, \nCommunauté urbaine de douala, \nWouri, Littoral, \n 3522 DLA, Cameroun",
-                                                        style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 14
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-
-                                                  Row(
-                                                    children: const [
-                                                      Icon(
-                                                        Icons.monetization_on_outlined,
-                                                        color: kBlueColorLight,
-                                                        size: 25,
-                                                      ),
-                                                      Text(
-                                                        "70 000 - 100 000",
-                                                        style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 14
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )
-
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                        top: 7,
-                                        left: 14,
-                                        child: Icon(
-                                          FontAwesomeIcons.solidStar,
-                                          size: 20,
-                                          color: Color(0xFF4D70A6).withOpacity(0.5),
-                                        ),
-                                      ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: Container(
-                                // color: Colors.blueGrey,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                return  GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return DetailAlertPage();
+                      },
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 320,
+                        alignment: Alignment.center,
+                        height: ScreenUtil().setHeight(590),
+                        margin: EdgeInsets.symmetric(vertical: 15),
+                        decoration: BoxDecoration(
+                            color: Color(0xFFF1F3F6),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(10, 10),
+                                  color: Color(0xFF4D70A6).withOpacity(0.2),
+                                  blurRadius: 36),
+                              BoxShadow(
+                                  offset: Offset(-10, -10),
+                                  color: Color.fromARGB(170, 255, 255, 255),
+                                  blurRadius: 10),
+                            ]),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 1, top: 1, bottom: 1),
+                          child: Column(
+                            children: [
+                              Flexible(
+                                flex: 6,
+                                child: Stack(
                                   children: [
-                                    Divider(),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.only(left: 25, bottom: 3),
-                                          child: ClipOval(
-                                            child: Material(
-                                              color: Colors.blue, // Button color
-                                              child: InkWell(
-                                                splashColor: Colors.red, // Splash color
-                                                onTap: () {},
-                                                child: SizedBox(width: 26, height: 26, child: Icon(Icons.wallet_travel, size: 16, color: Colors.white,)),
+                                    Container(
+                                      // color: Colors.redAccent,
+                                      child: Row(
+                                        children: [
+                                          Flexible(
+                                            flex: 2,
+                                            child: Container(
+                                              // color: Colors.yellow,
+                                              child:  InnerShadow(
+                                                color: Color(0xFF4D70A6).withOpacity(.2),
+                                                offset: Offset(5, 5),
+                                                blur: 2,
+                                                child: Container(
+                                                  height: ScreenUtil().setHeight(200),
+                                                  width: ScreenUtil().setHeight(230),
+                                                  // margin: EdgeInsets.symmetric(vertical: 1),
+                                                  decoration: BoxDecoration(
+                                                    // borderRadius: BorderRadius.circular(10),
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                          image: AssetImage("assets/images/logos/NatLogo.jpg")
+                                                      )
+                                                    // color: Color(0xFFF1F3F6),
+                                                  ),
+                                                  // child: Image.asset("assets/images/logos/NatLogo.jpg"),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          "CDD",
-                                          style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 20
-                                          ),
-                                        )
+                                          Flexible(
+                                            flex: 7,
+                                            child: Container(
+                                              // color: Colors.green,
+                                              padding: EdgeInsets.only(left: 3, top: 5, bottom: 3),
+                                              child: Container(
+                                                padding: EdgeInsets.only(left: 5, top: 5),
+                                                child: Column(
+                                                  children: [
+                                                    const Text(
+                                                      "Développeur Full Stack",
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          color: kBlueColorLight),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
 
-                                      ],
-                                    )
+                                                    Row(
+                                                      children: const [
+                                                        Icon(
+                                                          Icons.location_on_outlined,
+                                                          color: kBlueColorLight,
+                                                          size: 25,
+                                                        ),
+                                                        Text(
+                                                          "Douala, Douala II, \nCommunauté urbaine de douala, \nWouri, Littoral, \n 3522 DLA, Cameroun",
+                                                          style: TextStyle(
+                                                              color: Colors.grey,
+                                                              fontSize: 14
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+
+                                                    Row(
+                                                      children: const [
+                                                        Icon(
+                                                          Icons.monetization_on_outlined,
+                                                          color: kBlueColorLight,
+                                                          size: 25,
+                                                        ),
+                                                        Text(
+                                                          "70 000 - 100 000",
+                                                          style: TextStyle(
+                                                              color: Colors.grey,
+                                                              fontSize: 14
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                          top: 7,
+                                          left: 14,
+                                          child: Icon(
+                                            FontAwesomeIcons.solidStar,
+                                            size: 20,
+                                            color: Color(0xFF4D70A6).withOpacity(0.5),
+                                          ),
+                                        ),
                                   ],
                                 ),
                               ),
-                            ),
+                              Flexible(
+                                flex: 2,
+                                child: Container(
+                                  // color: Colors.blueGrey,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Divider(),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(left: 25, bottom: 3),
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.blue, // Button color
+                                                child: InkWell(
+                                                  splashColor: Colors.red, // Splash color
+                                                  onTap: () {},
+                                                  child: SizedBox(width: 26, height: 26, child: Icon(Icons.wallet_travel, size: 16, color: Colors.white,)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            "CDD",
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 20
+                                            ),
+                                          )
 
-                          ],
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    )
-                  ],
+                      SizedBox(
+                        width: 20,
+                      )
+                    ],
+                  ),
                 );
               }),
         ),
