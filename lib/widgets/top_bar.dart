@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:nat_cv/widgets/back_boutton.dart';
 import 'package:nat_cv/widgets/drawer_boutton.dart';
+import 'package:nat_cv/widgets/like_boutton_neo.dart';
 
 // import 'back_button.dart';
 
@@ -18,16 +19,17 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 18.0),
+      padding: const EdgeInsets.only(bottom: 5.0),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Align(alignment: Alignment.centerLeft, child: isMenu ? NeumorphicDrawer() : NeumorphicBack()),
+          Align(alignment: Alignment.centerRight, child:  NeumorphicFavorite()),
           Center(
             child: Text(
               this.title,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.w800,
                 color: NeumorphicTheme.isUsingDark(context)
                     ? Colors.white70

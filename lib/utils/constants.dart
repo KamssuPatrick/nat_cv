@@ -46,3 +46,8 @@ const kBlueColor = Color(0xFF1E1E99);
 
 const kBlueColorLight = Color(0xFF4D70A6);
 
+
+
+
+const kColorPrimaryBlue = Color(0xFF0642C4);
+

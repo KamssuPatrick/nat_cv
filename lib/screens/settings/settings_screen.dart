@@ -47,7 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
     ];
 
     return Container(
-      height: 400,
+      height: 500,
       width: double.infinity,
       child: ClearFocusContainer(
             child: Column(

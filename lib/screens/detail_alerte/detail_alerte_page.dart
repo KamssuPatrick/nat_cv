@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nat_cv/common/general/theme_provider.dart';
+import 'package:nat_cv/common/ui/bulged_in_widget.dart';
+import 'package:nat_cv/common/ui/clear_focus_container.dart';
+import 'package:nat_cv/common/ui/tab_indicator.dart';
+import 'package:nat_cv/screens/apply_for_job/apply_for_job_page.dart';
 import 'package:nat_cv/screens/detail_alerte/clock.dart';
+import 'package:nat_cv/screens/detail_alerte/tab/description.dart';
+import 'package:nat_cv/screens/detail_alerte/tab/job_overview.dart';
+import 'package:nat_cv/screens/settings/general_tab_screen.dart';
+import 'package:nat_cv/screens/settings/mon_cv_tab_screen.dart';
+import 'package:nat_cv/screens/settings/parametre_tab_screen.dart';
+import 'package:nat_cv/screens/settings/tab_interface.dart';
+import 'package:nat_cv/utils/constants.dart';
 import 'package:nat_cv/widgets/top_bar.dart';
 import 'package:nat_cv/widgets/top_card.dart';
 
@@ -38,106 +51,232 @@ class _ClockFirstPage extends StatefulWidget {
   createState() => _ClockFirstPageState();
 }
 
-class _ClockFirstPageState extends State<_ClockFirstPage> {
+class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderStateMixin{
+
+  TabController? _controller;
+
+  @override
+  void initState() {
+    _controller = TabController(initialIndex: 0, length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() async {
+    super.dispose();
+    _controller!.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final List<TabInterface> tabs = [
+      DescriptionTabDetail(titleName : 'Description',),
+      JobOverviewTabDetail(titleName : 'Job Overview',),
+    ];
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
-            child: TopBar(actions: [], isMenu: false,),
-          ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 20.0),
-          //   child: Stack(
-          //     children: <Widget>[
-          //       Align(
-          //         alignment: Alignment.topLeft,
-          //         child: Text(
-          //           "Clock",
-          //           style: TextStyle(
-          //             fontWeight: FontWeight.w700,
-          //             fontSize: 28,
-          //             shadows: [
-          //               Shadow(
-          //                   color: Colors.black38,
-          //                   offset: Offset(1.0, 1.0),
-          //                   blurRadius: 2)
-          //             ],
-          //             color: NeumorphicTheme.defaultTextColor(context),
-          //           ),
-          //         ),
-          //       ),
-          //       Align(
-          //         alignment: Alignment.topRight,
-          //         child: Neumorphic(
-          //           style: NeumorphicStyle(
-          //             depth: 20,
-          //             intensity: 0.4,
-          //             boxShape: NeumorphicBoxShape.roundRect(
-          //                 BorderRadius.circular(8)),
-          //           ),
-          //           child: NeumorphicButton(
-          //             padding: EdgeInsets.all(12.0),
-          //             child: Icon(
-          //               Icons.add,
-          //               color: Color(0xFFC1CDE5),
-          //             ),
-          //             onPressed: () {
-          //               Navigator.of(context)
-          //                   .push(MaterialPageRoute(builder: (context) {
-          //                 return ClockAlarmPage();
-          //               }));
-          //             },
-          //             style: NeumorphicStyle(
-          //                 depth: -1,
-          //                 boxShape: NeumorphicBoxShape.roundRect(
-          //                     BorderRadius.circular(8))),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Flexible(child: NeumorphicClock()),
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: TopNeuCard(
-              context: context,
-              balance: "400000",
-              income: "5000",
-              expense: "4111",
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Padding(
+              padding:  EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
+              child: TopBar(actions: [], isMenu: false,),
             ),
-          ),
-          SizedBox(height: 30),
-          Text(
-            "6:21 PM",
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 36,
-              shadows: [
-                Shadow(
-                    color: Colors.black38,
-                    offset: Offset(1.0, 1.0),
-                    blurRadius: 2)
+            SizedBox(
+              height: ScreenUtil().setHeight(15),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 120,
+                  alignment: Alignment.center,
+                  height: ScreenUtil().setHeight(330),
+                  // margin: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Color(0xFFF1F3F6),
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(10, 10),
+                            color: Color(0xFF4D70A6).withOpacity(0.2),
+                            blurRadius: 36),
+                        BoxShadow(
+                            offset: Offset(-10, -10),
+                            color: Color.fromARGB(170, 255, 255, 255),
+                            blurRadius: 10),
+                      ]),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(13, 12, 13, 12),
+                    child:
+                      Container(
+                        // height: 100,
+                        // width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(17)),
+                    image: DecorationImage(
+                                  image: AssetImage("assets/images/logos/NatLogo.jpg"),
+                                  fit: BoxFit.fill,
+                                  ),
+                                  ),
+                      )
+                  ),
+                ),
               ],
-              color: NeumorphicTheme.defaultTextColor(context),
             ),
-          ),
-          Text(
-            "London, Uk",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              color: NeumorphicTheme.variantColor(context),
+
+            SizedBox(
+              height: ScreenUtil().setHeight(55),
             ),
-          ),
-          SizedBox(height: 20),
-          NeumorphicSelector(),
-          SizedBox(height: 20),
-        ],
+            Text(
+              "Interactive Designer",
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: ScreenUtil().setHeight(2),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "NatCV / ",
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,),
+                ),
+                Icon(
+                  Icons.location_on,
+                  size: 14,
+                ),
+                Text(
+                  "Douala, Cameroun ",
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,),
+                ),
+
+              ],
+            ),
+
+            Container(
+              height: 500,
+              width: double.infinity,
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: kGreyColor.withOpacity(0.1)
+              ),
+              child: ClearFocusContainer(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 1),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // const SizedBox(height: 24),
+                          BulgedInWidget(
+                            width: double.infinity,
+                            height: 48,
+                            cornerRadius: 18,
+                            borderWidth: 2,
+                            color: Colors.white,
+                            child: TabBar(
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: const BubbleTabIndicator(
+                                indicatorHeight: 48,
+                                indicatorColor: kColorPrimaryBlue,
+                                tabBarIndicatorSize: TabBarIndicatorSize.tab,
+                              ),
+                              labelPadding: EdgeInsets.all(0),
+                              controller: _controller,
+                              unselectedLabelColor: Colors.black,
+                              labelColor: Colors.white,
+                              tabs: List.generate(
+                                tabs.length,
+                                    (index) {
+                                  return Container(
+                                    child: Center(
+                                      child: Text(
+                                        tabs[index].titleName,
+                                        // style: theme.textTheme.bodyText2,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        controller: _controller,
+                        children: tabs,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: ScreenUtil().setHeight(20),
+            ),
+
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ApplyForJobPage()));
+              },
+              child: Container(
+                width: ScreenUtil().setHeight(730),
+                alignment: Alignment.center,
+                height: ScreenUtil().setHeight(180),
+                // margin: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: kColorPrimaryBlue.withOpacity(0.9),
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(10, 10),
+                          color: Color(0xFF4D70A6).withOpacity(0.2),
+                          blurRadius: 36),
+                      BoxShadow(
+                          offset: Offset(-10, -10),
+                          color: Color.fromARGB(170, 255, 255, 255),
+                          blurRadius: 10),
+                    ]),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(13, 12, 13, 12),
+                    child:
+                    Text("Apply for Job",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                    ),)
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: ScreenUtil().setHeight(80),
+            ),
+
+
+          ],
+        ),
       ),
     );
   }
