@@ -5,6 +5,7 @@ import 'package:nat_cv/common/general/theme_provider.dart';
 import 'package:nat_cv/common/ui/bulged_in_widget.dart';
 import 'package:nat_cv/common/ui/clear_focus_container.dart';
 import 'package:nat_cv/common/ui/tab_indicator.dart';
+import 'package:nat_cv/models/emploie.dart';
 import 'package:nat_cv/screens/apply_for_job/apply_for_job_page.dart';
 import 'package:nat_cv/screens/detail_alerte/clock.dart';
 import 'package:nat_cv/screens/detail_alerte/tab/description.dart';
@@ -18,7 +19,8 @@ import 'package:nat_cv/widgets/top_bar.dart';
 import 'package:nat_cv/widgets/top_card.dart';
 
 class DetailAlertPage extends StatefulWidget {
-  const DetailAlertPage({Key? key}) : super(key: key);
+  final EmploieModel? data;
+  const DetailAlertPage({Key? key, this.data}) : super(key: key);
 
   @override
   _DetailAlertPageState createState() => _DetailAlertPageState();
@@ -39,7 +41,7 @@ class _DetailAlertPageState extends State<DetailAlertPage> {
       themeMode: ThemeMode.light,
       child: Material(
         child: NeumorphicBackground(
-          child: _ClockFirstPage(),
+          child: _ClockFirstPage(data: widget.data),
         ),
       ),
     );
@@ -47,6 +49,9 @@ class _DetailAlertPageState extends State<DetailAlertPage> {
 }
 
 class _ClockFirstPage extends StatefulWidget {
+  final EmploieModel? data;
+
+  const _ClockFirstPage({Key? key, this.data}) : super(key: key);
   @override
   createState() => _ClockFirstPageState();
 }
@@ -71,8 +76,8 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final List<TabInterface> tabs = [
-      DescriptionTabDetail(titleName : 'Description',),
-      JobOverviewTabDetail(titleName : 'Job Overview',),
+      DescriptionTabDetail(titleName : 'Description', data: widget.data),
+      JobOverviewTabDetail(titleName : 'Job Overview', data: widget.data),
     ];
     return SafeArea(
       child: SingleChildScrollView(
@@ -81,7 +86,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
           children: <Widget>[
             const Padding(
               padding:  EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
-              child: TopBar(actions: [], isMenu: false,),
+              child: TopBar(actions: [], isMenu: false, haveFavorite: false),
             ),
             SizedBox(
               height: ScreenUtil().setHeight(15),
@@ -132,7 +137,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
               height: ScreenUtil().setHeight(55),
             ),
             Text(
-              "Interactive Designer",
+              "${widget.data!.nom_emploi.toString()}",
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 22,
@@ -155,7 +160,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
                   size: 14,
                 ),
                 Text(
-                  "Douala, Cameroun ",
+                  "${widget.data!.meta![6]["value"]}",
                   style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,),

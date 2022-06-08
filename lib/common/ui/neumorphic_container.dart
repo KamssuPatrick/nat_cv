@@ -16,7 +16,8 @@ class NeumorphicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = this.color ?? Theme.of(context).backgroundColor;
+    final color = Theme.of(context).backgroundColor;
+    // final color = this.color ?? Theme.of(context).backgroundColor;
 
     return Container(
       decoration: BoxDecoration(

@@ -44,7 +44,8 @@ class BulgedInWidget extends StatelessWidget {
   }
 
   LinearGradient _getGradient(GradientDirection direction, BuildContext context) {
-    final color = this.color ?? Theme.of(context).accentColor;
+    // final color = this.color ?? Theme.of(context).accentColor;
+    final color = Theme.of(context).accentColor;
     Alignment begin;
     Alignment end;
     Color colorDarkShader;
@@ -76,7 +77,8 @@ class BulgedInWidget extends StatelessWidget {
   }
 
   LinearGradient _getBorderGradient(GradientDirection direction, BuildContext context) {
-    final color = this.color ?? Theme.of(context).accentColor;
+    final color = Theme.of(context).accentColor;
+    // final color = this.color ?? Theme.of(context).accentColor;
     Alignment begin;
     Alignment end;
     switch (direction) {

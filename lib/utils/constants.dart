@@ -9,7 +9,7 @@ const kInputTextStyle = TextStyle(
 
 // const URL_SERVEUR = "http://192.168.43.215:8000";
 // const URL_SERVEUR = "http://192.168.100.3:8000";
-const URL_SERVEUR = "https://admin.invest--partners.com";
+const URL_SERVEUR = "https://api.natrhemploi-camer.com";
 const URL_CAMPAY = "https://www.campay.net/api";
 
 

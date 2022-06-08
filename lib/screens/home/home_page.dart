@@ -28,21 +28,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
+      context,
         designSize: const Size(1080, 1920),
-        context: context,
         minTextAdapt: true,
-        orientation: Orientation.portrait);
+    );
+    // ScreenUtil.init(
+    //   context,
+    //
+    //   deviceSize: Size(screenWidth, screenHeight),
+    //   designSize: const Size(360, 690),
+    //   orientation: Orientation.portrait,
+    // );
     return Scaffold(
         backgroundColor: const Color(0xFFF1F3F6),
         body: SafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height * 1.4,
             margin:
-            EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(50)),
+            EdgeInsets.only( left: ScreenUtil().setWidth(35), right: ScreenUtil().setWidth(18)),
             child: Column(
               children: [
                 SizedBox(
@@ -121,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                       height: MediaQuery.of(context).size.height * 1.4,
+                        color: const Color(0xFFF1F3F6),
                       child: Column(
                         children: [
 
@@ -131,7 +137,7 @@ class _HomePageState extends State<HomePage> {
 
 
                                 statusHome
-                                    ? AccueilPage()
+                                    ? SingleChildScrollView(child: AccueilPage())
                                     : statusFilm
                                         ? Container(
                                             // padding: EdgeInsets.all(1),

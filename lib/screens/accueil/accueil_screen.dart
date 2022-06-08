@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoder_location/geocoder.dart';
 import 'package:nat_cv/components/job_category_component.dart';
 import 'package:nat_cv/components/recent_job_component.dart';
+import 'package:nat_cv/models/emploie.dart';
 import 'package:nat_cv/screens/detail_alerte/detail_alerte_page.dart';
+import 'package:nat_cv/screens/see_all/see_all_recent_job_page.dart';
+import 'package:nat_cv/services/get.dart';
 import 'package:nat_cv/utils/constants.dart';
 
 class AccueilPage extends StatefulWidget {
@@ -15,7 +19,7 @@ class AccueilPage extends StatefulWidget {
   _AccueilPageState createState() => _AccueilPageState();
 }
 
-class _AccueilPageState extends State<AccueilPage> {
+class _AccueilPageState extends State<AccueilPage> with TickerProviderStateMixin{
 
   bool status = true;
   int selectedIndex = 0;
@@ -25,12 +29,25 @@ class _AccueilPageState extends State<AccueilPage> {
 
   List<String> listTextIcon = ["Bank", "Design", "Electricien"];
 
+  late AnimationController animationController;
+
+  List<Map<dynamic, dynamic>> lists = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 3000), vsync: this);
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFFF1F3F6),
-      child: Column(
+    return
+      // Container(
+      // child:
+      Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -224,12 +241,18 @@ class _AccueilPageState extends State<AccueilPage> {
                     fontSize: 22,
                     fontWeight: FontWeight.bold),
               ),
-              Text(
-                "see all",
-                style: TextStyle(
-                    color: Color(0xFF4D70A6),
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SeeAllRecentJobPage()));
+                },
+                child: Text(
+                  "see all",
+                  style: TextStyle(
+                      color: Color(0xFF4D70A6),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -237,24 +260,61 @@ class _AccueilPageState extends State<AccueilPage> {
           Container(
             height: ScreenUtil().setHeight(680),
             width: double.infinity,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 12,
-                itemBuilder: (context,index){
+            child: FutureBuilder<List<EmploieModel>?>(
+              future: GetService.getAllEmploies(),
+              builder: (context, snapshot) {
 
-                  return  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                          return DetailAlertPage();
+                if(!snapshot.hasData || snapshot.hasError)
+                  {
+
+                    return Center(
+                      child: Text(
+                        "Aucune donnée trouvée"
+                      ),
+                    );
+                  }
+
+                print("iiiii ${snapshot.data!.length}");
+                return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context,index){
+
+                      final int count =
+                      12 > 10 ? 10 : 7;
+                      final Animation<double> animation =
+                      Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: animationController,
+                              curve: Interval(
+                                  (1 / count) * index, 1.0,
+                                  curve: Curves.fastOutSlowIn)));
+                      animationController.forward();
+
+                      return  GestureDetector(
+                        onTap: () async{
+
+                          // From a query
+
+                          print("${snapshot.data![index].meta!.length}");
+                          print("${snapshot.data![index].meta![28]["value"]}");
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return DetailAlertPage(data: snapshot.data![index]);
+                            },
+                            ),
+                          );
                         },
+                        child: RecentJobComponent(
+                          animation: animation,
+                          animationController: animationController,
+                          data: snapshot.data![index]
                         ),
                       );
-                    },
-                    child: RecentJobComponent(),
-                  );
-                }),
+                    });
+              }
+            ),
           ),
 
 
@@ -307,27 +367,45 @@ class _AccueilPageState extends State<AccueilPage> {
           ),
          Container(
            height: 250,
-           child: ListView.builder(
-             shrinkWrap: true,
-             primary: false,
-             itemCount: 5,
-             itemBuilder: (context, index)
-             {
-               return listTile("Secrectariat Bureautique", "75 000 \$", FontAwesomeIcons.briefcase);
-             },
+           child: FutureBuilder<List<EmploieModel>?>(
+             future: GetService.getAllEmploies(),
+             builder: (context, snapshot) {
+
+               if(!snapshot.hasData || snapshot.hasError)
+               {
+
+                 return Center(
+                   child: Text(
+                       "Aucune donnée trouvée"
+                   ),
+                 );
+               }
+
+               return ListView.builder(
+                 shrinkWrap: true,
+                 primary: false,
+                 itemCount: snapshot.data!.length,
+                 itemBuilder: (context, index)
+                 {
+                   return listTile(snapshot.data![index].nom_emploi.toString(), "75 000 \$", FontAwesomeIcons.briefcase);
+                 },
+               );
+             }
            ),
          ),
           
         ],
-      ),
-    );
+      )
+
+    // )
+    ;
   }
 
   Widget listTile(String title, String cost, IconData icon) {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
-      height: ScreenUtil().setHeight(330),
+      height: ScreenUtil().setHeight(390),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           color: Color(0xFFF1F3F6),

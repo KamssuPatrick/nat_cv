@@ -16,13 +16,13 @@ class _RegisterPageState extends State<RegisterPage> {
   bool status = true;
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(1080, 2160),
-        context: context,
-        minTextAdapt: true,
-        orientation: Orientation.portrait);
+    // ScreenUtil.init(BoxConstraints(
+    //     maxWidth: MediaQuery.of(context).size.width,
+    //     maxHeight: MediaQuery.of(context).size.height),
+    //     designSize: Size(1080, 2160),
+    //     context: context,
+    //     minTextAdapt: true,
+    //     orientation: Orientation.portrait);
     return Scaffold(
         backgroundColor: Color(0xFFF1F3F6),
         body: SafeArea(

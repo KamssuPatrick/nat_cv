@@ -7,7 +7,8 @@ abstract class BaseNavigationScreen extends Widget {
 
   static MaterialPageRoute getScreen(RouteSettings settings, {initialScreen: BaseNavigationScreen}) {
     return MaterialPageRoute(
-      builder: (context) => (settings.arguments as BaseNavigationScreen) ?? initialScreen,
+      // builder: (context) => (settings.arguments as BaseNavigationScreen) ?? initialScreen,
+      builder: (context) => (settings.arguments as BaseNavigationScreen) ,
       settings: settings,
     );
   }

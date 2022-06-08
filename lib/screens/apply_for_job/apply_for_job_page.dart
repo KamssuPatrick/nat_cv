@@ -61,7 +61,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
           children: <Widget>[
             const Padding(
               padding:  EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
-              child: TopBar(actions: [], isMenu: false, title: "Apply for this job",),
+              child: TopBar(actions: [], isMenu: false, title: "Apply for this job", haveFavorite: true,),
             ),
             SizedBox(
               height: ScreenUtil().setHeight(15),

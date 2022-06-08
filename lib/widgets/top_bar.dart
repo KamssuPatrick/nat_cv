@@ -9,12 +9,12 @@ import 'package:nat_cv/widgets/like_boutton_neo.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool isMenu;
+  final bool isMenu, haveFavorite;
   final List<Widget> actions;
 
   static const double kToolbarHeight = 110.0;
 
-  const TopBar({this.title = "", required this.actions, required this.isMenu});
+  const TopBar({this.title = "", required this.actions, required this.isMenu, required this.haveFavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         alignment: Alignment.center,
         children: [
           Align(alignment: Alignment.centerLeft, child: isMenu ? NeumorphicDrawer() : NeumorphicBack()),
-          Align(alignment: Alignment.centerRight, child:  NeumorphicFavorite()),
+          haveFavorite ? Align(alignment: Alignment.centerRight, child:  NeumorphicFavorite()) : Container(),
           Center(
             child: Text(
               this.title,
@@ -37,12 +37,12 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: actions ?? [],
-              )),
+          // Align(
+          //     alignment: Alignment.centerRight,
+          //     child: Row(
+          //       mainAxisSize: MainAxisSize.min,
+          //       children: actions ?? [],
+          //     )),
         ],
       ),
     );

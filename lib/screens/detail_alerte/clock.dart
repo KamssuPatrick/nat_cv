@@ -62,7 +62,7 @@ class _ClockPageState extends State<_Page> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 9.0),
-            child: TopBar(actions: [], isMenu:  false,),
+            child: TopBar(actions: [], isMenu:  false, haveFavorite: false,),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
