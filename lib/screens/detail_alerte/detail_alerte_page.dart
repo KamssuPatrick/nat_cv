@@ -136,12 +136,17 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
             SizedBox(
               height: ScreenUtil().setHeight(55),
             ),
-            Text(
-              "${widget.data!.nom_emploi.toString()}",
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "${widget.data!.nom_emploi.toString()}",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             SizedBox(
               height: ScreenUtil().setHeight(2),
@@ -150,7 +155,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "NatCV / ",
+                  "NatRH / ",
                   style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,),
@@ -170,7 +175,7 @@ class _ClockFirstPageState extends State<_ClockFirstPage> with TickerProviderSta
             ),
 
             Container(
-              height: 500,
+              height: 450,
               width: double.infinity,
               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),

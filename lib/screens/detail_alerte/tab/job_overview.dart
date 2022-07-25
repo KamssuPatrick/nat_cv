@@ -208,6 +208,7 @@ class _JobOverviewTabDetailState extends State<JobOverviewTabDetail> with Automa
             ],
           ),
 
+
           SizedBox(
             height: ScreenUtil().setHeight(40),
           ),
@@ -215,7 +216,7 @@ class _JobOverviewTabDetailState extends State<JobOverviewTabDetail> with Automa
           Row(
             children: [
               Icon(
-                Icons.sort,
+                Icons.view_day,
                 size: 39,
                 color: kColorPrimaryBlue.withOpacity(0.9),
               ),
@@ -230,7 +231,7 @@ class _JobOverviewTabDetailState extends State<JobOverviewTabDetail> with Automa
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Career Level",
+                      "Durée du travail",
                       style: const TextStyle(
                         color: kColorPrimaryDark,
                         fontSize: 15,),
@@ -239,133 +240,7 @@ class _JobOverviewTabDetailState extends State<JobOverviewTabDetail> with Automa
                       height: 1,
                     ),
                     Text(
-                      "Director",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-
-          SizedBox(
-            height: ScreenUtil().setHeight(40),
-          ),
-
-          Row(
-            children: [
-              Icon(
-                Icons.wb_twilight_sharp,
-                size: 39,
-                color: kColorPrimaryBlue.withOpacity(0.9),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                // color: Colors.red,
-                margin: EdgeInsets.only(bottom: 1),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Experience",
-                      style: const TextStyle(
-                        color: kColorPrimaryDark,
-                        fontSize: 15,),
-                    ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                    Text(
-                      "10+ Years",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-
-          SizedBox(
-            height: ScreenUtil().setHeight(40),
-          ),
-
-          Row(
-            children: [
-              Icon(
-                Icons.wallet_travel_outlined,
-                size: 39,
-                color: kColorPrimaryBlue.withOpacity(0.9),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                // color: Colors.red,
-                margin: EdgeInsets.only(bottom: 1),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Qualification",
-                      style: const TextStyle(
-                        color: kColorPrimaryDark,
-                        fontSize: 15,),
-                    ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                    Text(
-                      "Master Degree",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-
-          SizedBox(
-            height: ScreenUtil().setHeight(40),
-          ),
-
-          Row(
-            children: [
-              Icon(
-                Icons.money_outlined,
-                size: 39,
-                color: kColorPrimaryBlue.withOpacity(0.9),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                // color: Colors.red,
-                margin: EdgeInsets.only(bottom: 1),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Rate",
-                      style: const TextStyle(
-                        color: kColorPrimaryDark,
-                        fontSize: 15,),
-                    ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                    Text(
-                      "200 000 XAF/Mois",
+                      "${widget.data!.meta![25]["value"]} jours",
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,),
@@ -407,7 +282,7 @@ class _JobOverviewTabDetailState extends State<JobOverviewTabDetail> with Automa
                       height: 1,
                     ),
                     Text(
-                      "2 Application(s)",
+                      "0 Application(s)",
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 12,),

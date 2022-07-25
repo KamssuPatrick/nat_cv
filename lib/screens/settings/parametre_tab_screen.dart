@@ -107,38 +107,38 @@ class _ParametreTabState extends State<ParametreTab> with AutomaticKeepAliveClie
                         //open change location
 
                         // set up the buttons
-                        Widget cancelButton = FlatButton(
-                          child: Text('cancel'),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        );
-                        Widget continueButton = FlatButton(
-                          child: Text('confirm'),
-                          onPressed: () async {
-                            String token ;
-
-
-                          },
-                        );
+                        // Widget cancelButton = FlatButton(
+                        //   child: Text('cancel'),
+                        //   onPressed: () {
+                        //     Navigator.pop(context);
+                        //   },
+                        // );
+                        // Widget continueButton = FlatButton(
+                        //   child: Text('confirm'),
+                        //   onPressed: () async {
+                        //     String token ;
+                        //
+                        //
+                        //   },
+                        // );
 
                         // set up the AlertDialog
-                        AlertDialog alert = AlertDialog(
-                          title: Text('attention'),
-                          content: Text('confirmation_deconnexion'.tr()),
-                          actions: [
-                            cancelButton,
-                            continueButton,
-                          ],
-                        );
+                        // AlertDialog alert = AlertDialog(
+                        //   title: Text('attention'),
+                        //   content: Text('confirmation_deconnexion'.tr()),
+                        //   actions: [
+                        //     cancelButton,
+                        //     continueButton,
+                        //   ],
+                        // );
 
                         // show the dialog
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return alert;
-                          },
-                        );
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (BuildContext context) {
+                        //     return alert;
+                        //   },
+                        // );
                       },
                     ),
                   ],

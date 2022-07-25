@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nat_cv/components/recent_job_component.dart';
+import 'package:nat_cv/models/emploie.dart';
+import 'package:nat_cv/services/get.dart';
 import 'package:nat_cv/utils/constants.dart';
 
 
@@ -47,33 +49,50 @@ class _FavorisPageState extends State<FavorisPage> with TickerProviderStateMixin
         SizedBox(
           height: ScreenUtil().setHeight(20),
         ),
-        ListView.builder(
-            scrollDirection: Axis.vertical,
-            physics: ScrollPhysics(),
-            padding: EdgeInsets.all(1),
-            shrinkWrap: true,
-            itemCount: 3,
-            itemBuilder: (context,index){
+        StreamBuilder<List<EmploieModel>?>(
+          stream: GetService.getAllEmploies().asStream(),
+          builder: (context, snapshot) {
 
-              final int count =
-              20 > 10 ? 10 : 20;
-              final Animation<double> animation =
-              Tween<double>(begin: 0.0, end: 1.0).animate(
-                  CurvedAnimation(
-                      parent: animationController,
-                      curve: Interval(
-                          (1 / count) * index, 1.0,
-                          curve: Curves.fastOutSlowIn)));
-              animationController.forward();
+            if(!snapshot.hasData || snapshot.hasError)
+            {
 
-              return  Padding(
-                  padding: EdgeInsets.only(left: 15, ),
-                  child: RecentJobComponent(
-                    animation: animation,
-                    animationController: animationController,
-                    // data: {},
-                  ));
-            }),
+              return Center(
+                child: Text(
+                    "Aucune donnée trouvée"
+                ),
+              );
+            }
+
+            return ListView.builder(
+                scrollDirection: Axis.vertical,
+                physics: ScrollPhysics(),
+                padding: EdgeInsets.all(1),
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context,index){
+
+                  final int count =
+                  20 > 10 ? 10 : 20;
+                  final Animation<double> animation =
+                  Tween<double>(begin: 0.0, end: 1.0).animate(
+                      CurvedAnimation(
+                          parent: animationController,
+                          curve: Interval(
+                              (1 / count) * index, 1.0,
+                              curve: Curves.fastOutSlowIn)));
+                  animationController.forward();
+
+                  return  Padding(
+                      padding: EdgeInsets.only(left: 15, ),
+                      child: RecentJobComponent(
+                        animation: animation,
+                        animationController: animationController,
+                          data: snapshot.data![index]
+                        // data: {},
+                      ));
+                });
+          }
+        ),
       ],
     );
   }

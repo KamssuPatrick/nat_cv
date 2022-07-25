@@ -22,13 +22,14 @@ const URL_TERME_CONDITIONS = "https://invest--partners.com/static/media/CONFIDEN
 
 
 
-const kColorPrimary = Color(0xffc5473b);
+const kColorPrimary = Color(0xFF0642C4);
+// const kColorPrimary = Color(0xffc5473b);
 const kColorSecondaries = Color(0xffedc7c4);
 const kColorPrimaryWithOpacity = Color(0xfff3dad7);
 const kFacebookColor = Color(0xff3B5998);
 const kColorPrimaryDark = Color(0xff1b3a5e);
 const kTenBlackColor = Color(0xff1b3a5e);
-const kColorSecondary = Color(0xffff748d);
+const kColorSecondary = Color(0xff0a5aec);
 const kBlackColor = Color(0xff121212);
 const kColorLight = Color(0xffEBF2F5);
 const kWhiteColor = Color(0xffEBF2F5);

@@ -33,28 +33,28 @@ class InfoDialog extends StatelessWidget {
             color: Colors.grey,
             height: 0.2,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                child: FlatButton(
-                  onPressed: () async {
-                    Navigator.of(context).pop();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      'OK',
-                      style: TextStyle(
-                          color: theme.primaryColor,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: <Widget>[
+          //     Expanded(
+          //       child: FlatButton(
+          //         onPressed: () async {
+          //           Navigator.of(context).pop();
+          //         },
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(18.0),
+          //           child: Text(
+          //             'OK',
+          //             style: TextStyle(
+          //                 color: theme.primaryColor,
+          //                 fontSize: 18.0,
+          //                 fontWeight: FontWeight.w400),
+          //           ),
+          //         ),
+          //       ),
+          //     )
+          //   ],
+          // )
         ],
       ),
     );

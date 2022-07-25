@@ -387,7 +387,7 @@ class _AccueilPageState extends State<AccueilPage> with TickerProviderStateMixin
                  itemCount: snapshot.data!.length,
                  itemBuilder: (context, index)
                  {
-                   return listTile(snapshot.data![index].nom_emploi.toString(), "75 000 \$", FontAwesomeIcons.briefcase);
+                   return listTile(snapshot.data![index].nom_emploi.toString(), "75 000 \$", FontAwesomeIcons.briefcase, snapshot.data![index]);
                  },
                );
              }
@@ -401,11 +401,11 @@ class _AccueilPageState extends State<AccueilPage> with TickerProviderStateMixin
     ;
   }
 
-  Widget listTile(String title, String cost, IconData icon) {
+  Widget listTile(String title, String cost, IconData icon, data) {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
-      height: ScreenUtil().setHeight(390),
+      height: ScreenUtil().setHeight(260),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           color: Color(0xFFF1F3F6),
@@ -443,7 +443,7 @@ class _AccueilPageState extends State<AccueilPage> with TickerProviderStateMixin
                       color: Color(0xFF4D70A6).withOpacity(.7)),
                 ),
                 Text(
-                  "Douala, Douala II, \nCommunauté urbaine de douala, \nWouri, Littoral, \n 3522 DLA, Cameroun",
+                  "Region: ${data!.meta![6]["value"]}",
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

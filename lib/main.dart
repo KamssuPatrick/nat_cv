@@ -51,6 +51,8 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+
+
   HttpOverrides.global = MyHttpOverrides();
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
@@ -127,15 +129,15 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         debugShowCheckedModeBanner: false,
         locale: context.locale,
-        title: 'title'.tr(),
+        title: 'Nat RH-Emploi',
         initialRoute: '/',
         onGenerateRoute: geneateRoute,
         themeMode: ThemeMode.light,
         theme: const NeumorphicThemeData(
             defaultTextColor: Style.textColor,
             baseColor: Style.bgColor,
-            accentColor: Style.primaryColor,
-            variantColor: Style.primaryColor,
+            accentColor: Colors.white,
+            variantColor: Style.bgColor,
             intensity: 0.6,
             lightSource: LightSource.topRight,
             depth: 3,
@@ -152,7 +154,7 @@ class MyApp extends StatelessWidget {
         darkTheme: const NeumorphicThemeData(
             defaultTextColor: Style.textColorDark,
             baseColor: Style.bgColorDark,
-            accentColor: Style.primaryColor,
+            accentColor: Colors.white,
             variantColor: Style.primaryColor,
             intensity: 0.6,
             lightSource: LightSource.topRight,

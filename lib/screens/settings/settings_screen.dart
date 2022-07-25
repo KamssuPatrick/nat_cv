@@ -10,7 +10,7 @@ import 'package:nat_cv/common/ui/clear_focus_container.dart';
 import 'package:nat_cv/common/ui/tab_indicator.dart';
 import 'package:nat_cv/screens/settings/parametre_tab_screen.dart';
 import 'package:nat_cv/screens/settings/tab_interface.dart';
-import 'package:rebloc/rebloc.dart';
+// import 'package:rebloc/rebloc.dart';
 
 import 'general_tab_screen.dart';
 import 'mon_cv_tab_screen.dart';

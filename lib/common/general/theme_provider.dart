@@ -22,8 +22,8 @@ class ThemeProvider {
       backgroundColor: light_grey,
       scaffoldBackgroundColor: light_grey,
       fontFamily: app_font_family,
-      cursorColor: red,
-      textSelectionHandleColor: red,
+      // cursorColor: red,
+      // textSelectionHandleColor: red,
       cupertinoOverrideTheme: CupertinoThemeData(
         primaryColor: Colors.red,
       ),

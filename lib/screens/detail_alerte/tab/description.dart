@@ -64,7 +64,7 @@ class _DescriptionTabDetailState extends State<DescriptionTabDetail> with Automa
 
           ExpandableText(
             '${widget.data!.tache_emploie}',
-            trimLines: 15,
+            trimLines: 18,
           ),
 
 
