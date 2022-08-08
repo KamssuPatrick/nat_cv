@@ -1,4 +1,5 @@
-import 'package:custom_switch/custom_switch.dart';
+// import 'package:custom_switch/custom_switch.dart';
+// import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:nat_cv/screens/alert/alert_page.dart';
 import 'package:nat_cv/screens/conversation/conversation_page.dart';
 import 'package:nat_cv/screens/favoris/favoris_page.dart';
 import 'package:nat_cv/screens/settings/settings_screen.dart';
+import 'package:nat_cv/utils/custum_switch.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

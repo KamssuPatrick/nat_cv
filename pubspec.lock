@@ -134,15 +134,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  custom_switch:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "306daccfeeb3c05197647c073bd9b01cb8f7be1a"
-      url: "https://github.com/MarcioQuimbundo/custom_switch_flutter.git"
-    source: git
-    version: "0.0.1"
   dbus:
     dependency: transitive
     description:
@@ -321,6 +312,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.5.3+2"
+  flutter_switch:
+    dependency: "direct main"
+    description:
+      name: flutter_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

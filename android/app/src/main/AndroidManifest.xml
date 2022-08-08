@@ -2,7 +2,7 @@
     package="com.houseinnovationgroup.natcv.nat_cv">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+<!--    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +13,7 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
+            android:exported="true"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"

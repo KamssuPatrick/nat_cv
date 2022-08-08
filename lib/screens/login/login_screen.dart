@@ -1,7 +1,7 @@
 // import 'package:bank_app_neomorphism_flutter/src/screens/cards/cards_screen.dart';
 import 'dart:async';
 
-import 'package:custom_switch/custom_switch.dart';
+// import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

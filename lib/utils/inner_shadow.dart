@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 
 class InnerShadow extends SingleChildRenderObjectWidget {
   const InnerShadow({
-    required Key key,
+     Key? key,
      this.color,
      this.blur,
      this.offset,

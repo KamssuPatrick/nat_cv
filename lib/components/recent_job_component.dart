@@ -1,10 +1,12 @@
-import 'package:custom_switch/custom_switch.dart';
+// import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nat_cv/models/emploie.dart';
 import 'package:nat_cv/utils/constants.dart';
+
+import '../utils/inner_shadow.dart';
 
 class RecentJobComponent extends StatefulWidget {
 
@@ -78,6 +80,7 @@ class _RecentJobComponentState extends State<RecentJobComponent> {
                                         color: Color(0xFF4D70A6).withOpacity(.2),
                                         offset: Offset(5, 5),
                                         blur: 2,
+                                        // key: null,
                                         child: Container(
                                           height: ScreenUtil().setHeight(200),
                                           width: ScreenUtil().setHeight(200),

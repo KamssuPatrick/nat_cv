@@ -1,7 +1,10 @@
-import 'package:custom_switch/custom_switch.dart';
+// import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../utils/inner_shadow.dart';
 
 class CardsScreen extends StatefulWidget {
   const CardsScreen({Key? key}) : super(key: key);
@@ -168,10 +171,10 @@ class _CardsScreenState extends State<CardsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          child: CustomSwitch(
+                          child: FlutterSwitch(
                             activeColor: Color(0xFFF1F3F6),
                             value: status,
-                            onChanged: (value) {
+                            onToggle: (value) {
                               setState(() {
                                 status = value;
                               });
